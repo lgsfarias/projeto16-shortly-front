@@ -13,6 +13,7 @@ const Button = styled.button`
     font-weight: 700;
     font-size: 14px;
     cursor: pointer;
+    margin-top: 35px;
 
     &:hover,
     &:focus {

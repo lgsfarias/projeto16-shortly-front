@@ -6,6 +6,7 @@ import usePersistedState from './hooks/usePersistedState.js';
 import HomePage from './components/pages/HomePage';
 import Header from './components/Header';
 import Login from './components/pages/Login';
+import SignUp from './components/pages/SignUp';
 
 function App() {
     const [token, setToken] = usePersistedState('token', null);
@@ -16,7 +17,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<h1>tela de registro</h1>} />
+                <Route path="/register" element={<SignUp />} />
                 <Route path="/ranking" element={<h1>tela de ranking</h1>} />
             </Routes>
         </UserContext.Provider>

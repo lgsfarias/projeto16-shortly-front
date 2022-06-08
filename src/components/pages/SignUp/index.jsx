@@ -1,52 +1,50 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ThreeDots } from 'react-loader-spinner';
 
-import UserContext from '../../../contexts/UserContext.js';
+import * as S from '../Login/style';
 
 import api from '../../../services/api';
 
-import * as S from './style';
-
-const Login = () => {
+const SignUp = () => {
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
-
-    const { setToken } = useContext(UserContext);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
 
         const body = {
+            name,
             email,
             password,
+            confirmPassword,
         };
 
         try {
-            const { data } = await api.post('signin', body);
-            setToken(data.token);
-            navigate('/');
+            await api.post('/signup', body);
+            alert('Usuário criado com sucesso!');
+            navigate('/login');
         } catch (err) {
             setLoading(false);
             alert(err.response.data);
         }
     };
 
-    useEffect(() => {
-        const token = JSON.parse(localStorage.getItem('token'));
-        if (token) {
-            setToken(token);
-            navigate('/');
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
     return (
         <S.LoginWrapper>
             <S.Form onSubmit={handleSubmit}>
+                <S.Input
+                    type="text"
+                    placeholder="Nome"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    disabled={loading}
+                />
                 <S.Input
                     type="email"
                     placeholder="E-mail"
@@ -61,12 +59,19 @@ const Login = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     disabled={loading}
                 />
+                <S.Input
+                    type="password"
+                    placeholder="Confirme a senha"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    disabled={loading}
+                />
                 <S.Button type="submit">
-                    {loading ? <ThreeDots color="#fff" /> : 'Entrar'}
+                    {loading ? <ThreeDots color="#fff" /> : 'Cadastrar'}
                 </S.Button>
             </S.Form>
         </S.LoginWrapper>
     );
 };
 
-export default Login;
+export default SignUp;
