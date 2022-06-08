@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { ThreeDots } from 'react-loader-spinner';
 
 import api from '../../../services/api.js';
-// import usePersistedState from '../../../hooks/usePersistedState.js';
 import trophy from '../../../assets/img/trophy.png';
+import UserContext from './../../../contexts/UserContext.js';
 import * as S from './style.js';
 
 const Ranking = () => {
+    const { user } = useContext(UserContext);
     const [ranking, setRanking] = useState(null);
 
     const getRanking = async () => {
@@ -44,9 +45,11 @@ const Ranking = () => {
                     </div>
                 )}
             </S.Ranking>
-            <div className="create-account">
-                Crie sua conta para usar nosso serviço!
-            </div>
+            {!user && (
+                <div className="create-account">
+                    Crie sua conta para usar nosso serviço!
+                </div>
+            )}
         </S.RankingWrapper>
     );
 };
