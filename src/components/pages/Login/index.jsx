@@ -14,7 +14,7 @@ const Login = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    const { setToken } = useContext(UserContext);
+    const { setToken, setUser } = useContext(UserContext);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -26,8 +26,20 @@ const Login = () => {
         };
 
         try {
-            const { data } = await api.post('signin', body);
-            setToken(data.token);
+            const {
+                data: { token },
+            } = await api.post('signin', body);
+            setToken(token);
+
+            const {
+                data: { user },
+            } = await api.get('users', {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            setUser(user);
+
             navigate('/home');
         } catch (err) {
             setLoading(false);

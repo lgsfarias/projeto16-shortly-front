@@ -2,16 +2,13 @@ import { FaTrashAlt } from 'react-icons/fa';
 
 import * as S from './style.js';
 
-const UrlContainer = () => {
+const UrlContainer = ({ shortenedUrl }) => {
     return (
         <S.UrlContainer>
             <S.Infos>
-                <span>url</span>
-                <span>short url</span>
-                <span>
-                    Quantidade de visitantes:{' '}
-                    {(Math.random() * 100000).toFixed(0)}
-                </span>
+                <span>{shortenedUrl.url}</span>
+                <span>{shortenedUrl.shortUrl}</span>
+                <span>Quantidade de visitantes: {shortenedUrl.visitCount}</span>
             </S.Infos>
             <S.Trash>
                 <FaTrashAlt fill="#ea4f4f" size="25" />

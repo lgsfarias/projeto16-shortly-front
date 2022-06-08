@@ -21,6 +21,7 @@ export const Infos = styled.div`
     color: #fff;
     box-shadow: 0px 4px 24px rgba(120, 177, 89, 0.12);
     border-radius: 12px 0px 0px 12px;
+    cursor: pointer;
 `;
 
 export const Trash = styled.div`
@@ -32,4 +33,9 @@ export const Trash = styled.div`
     background: #ffffff;
     box-shadow: 0px 4px 24px rgba(120, 177, 89, 0.12);
     border-radius: 0px 12px 12px 0px;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.8;
+    }
 `;

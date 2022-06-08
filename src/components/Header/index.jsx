@@ -7,18 +7,20 @@ import UserContext from '../../contexts/UserContext';
 import * as S from './style.js';
 
 const Header = () => {
-    const { token, setToken } = useContext(UserContext);
+    const { token, setToken, user, setUser } = useContext(UserContext);
     const navigate = useNavigate();
 
     const handleLogout = () => {
         localStorage.removeItem('token');
+        localStorage.removeItem('user');
         setToken(null);
+        setUser(null);
         navigate('/');
     };
 
     return token ? (
         <S.Header>
-            <span>Seja bem-vindo(a), Pessoa!</span>
+            <span>Seja bem-vindo(a), {user?.name}!</span>
             <div className="logo">
                 <h1>Shortly</h1>
                 <img src={shorts} alt="Shortly" />

@@ -11,9 +11,10 @@ import Home from './components/pages/Home';
 
 function App() {
     const [token, setToken] = usePersistedState('token', null);
+    const [user, setUser] = usePersistedState('user', null);
 
     return (
-        <UserContext.Provider value={{ token, setToken }}>
+        <UserContext.Provider value={{ token, setToken, user, setUser }}>
             <Header />
             <Routes>
                 <Route path="/" element={<Ranking />} />
