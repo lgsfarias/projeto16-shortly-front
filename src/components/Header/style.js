@@ -34,6 +34,7 @@ const Header = styled.header`
         display: flex;
         justify-content: center;
         align-items: center;
+        gap: 10px;
 
         img {
             width: 100px;
