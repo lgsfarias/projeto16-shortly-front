@@ -10,9 +10,11 @@ export const UrlContainer = styled.div`
 `;
 
 export const Infos = styled.div`
+    position: relative;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    padding: 0 40px;
     width: 100%;
     height: 100%;
     background: #80cc74;
@@ -29,6 +31,11 @@ export const Infos = styled.div`
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+    }
+
+    .copyIcon {
+        position: absolute;
+        right: 10px;
     }
 `;
 
