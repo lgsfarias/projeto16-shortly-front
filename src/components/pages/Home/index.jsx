@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { ThreeDots } from 'react-loader-spinner';
 
 import UrlContainer from '../../UrlContainer';
 import UserContext from '../../../contexts/UserContext.js';
@@ -10,6 +11,7 @@ import * as S from './style.js';
 const Home = () => {
     const { user, token } = useContext(UserContext);
     const [shortenedUrls, setShortenedUrls] = useState(null);
+    const [url, setUrl] = useState('');
 
     const getShortenedUrls = async () => {
         try {
@@ -20,15 +22,43 @@ const Home = () => {
         }
     };
 
+    const createShortenedUrl = async (url) => {
+        try {
+            const { data } = await api.post(
+                `/urls/shorten`,
+                { url },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            getShortenedUrls();
+        } catch (err) {
+            alert(err);
+        }
+    };
+
     useEffect(() => {
         getShortenedUrls();
     }, []);
 
     return (
         <S.HomeWrapper>
-            <S.HomeForm>
-                <S.Input type="text" placeholder="Links que cabem no bolso" />
-                <S.HomeButton>Encurtar link</S.HomeButton>
+            <S.HomeForm
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    createShortenedUrl(url);
+                }}
+            >
+                <S.Input
+                    type="url"
+                    placeholder="Links que cabem no bolso"
+                    value={url}
+                    onChange={(e) => setUrl(e.target.value)}
+                    required
+                />
+                <S.HomeButton type="submit">Encurtar link</S.HomeButton>
             </S.HomeForm>
             {shortenedUrls ? (
                 shortenedUrls.map((shortenedUrl) => (
@@ -38,7 +68,7 @@ const Home = () => {
                     />
                 ))
             ) : (
-                <p>carregando</p>
+                <ThreeDots color="#78b159" width="150" />
             )}
         </S.HomeWrapper>
     );
