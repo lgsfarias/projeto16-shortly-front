@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 import api from '../../../services/api.js';
 // import usePersistedState from '../../../hooks/usePersistedState.js';
-
-import Header from '../../Header';
+import trophy from '../../../assets/img/trophy.png';
+import * as S from './style.js';
 
 const HomePage = () => {
     const [ranking, setRanking] = useState([]);
@@ -22,21 +22,31 @@ const HomePage = () => {
     }, []);
 
     return (
-        <div>
-            <Header />
-            <h1>HomePage</h1>
-            {ranking ? (
-                ranking.map((item) => (
-                    <div key={item.id}>
-                        <p>{item.name}</p>
-                        <p>{item.linksCount}</p>
-                        <p>{item.visitCount}</p>
-                    </div>
-                ))
-            ) : (
-                <p>Carregando...</p>
-            )}
-        </div>
+        <S.Wrapper>
+            <S.Main>
+                <div className="logo">
+                    <img src={trophy} alt="trophy" />
+                    <h1>Ranking</h1>
+                </div>
+                <div className="ranking">
+                    {ranking ? (
+                        ranking.map((item, index) => (
+                            <p className="ranking-item" key={item.id}>
+                                <span>{index + 1}. </span>
+                                <span>{item.name} - </span>
+                                <span>{item.linksCount} links - </span>
+                                <span>{item.visitCount} visualizações</span>
+                            </p>
+                        ))
+                    ) : (
+                        <p>Carregando...</p>
+                    )}
+                </div>
+                <div className="create-account">
+                    Crie sua conta para usar nosso serviço!
+                </div>
+            </S.Main>
+        </S.Wrapper>
     );
 };
 

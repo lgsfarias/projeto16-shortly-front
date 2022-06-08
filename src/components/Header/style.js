@@ -19,9 +19,10 @@ const Header = styled.header`
         }
     }
 
-    p {
+    .nav-link {
         font-size: 14px;
-        color: #9C9C9C;
+        color: #9c9c9c;
+        cursor: pointer;
     }
 
     .logo {
@@ -40,6 +41,7 @@ const Header = styled.header`
         h1 {
             font-size: 64px;
             font-weight: 200;
+        }
     }
 `;
 
