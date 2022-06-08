@@ -23,6 +23,13 @@ export const Infos = styled.div`
     box-shadow: 0px 4px 24px rgba(120, 177, 89, 0.12);
     border-radius: 12px 0px 0px 12px;
     cursor: pointer;
+
+    .originalUrl {
+        max-width: 250px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 `;
 
 export const Trash = styled.div`

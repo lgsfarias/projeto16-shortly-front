@@ -39,6 +39,32 @@ const Home = () => {
         }
     };
 
+    const deleteShortenedUrl = async (id) => {
+        if (window.confirm('Tem certeza que deseja excluir essa url?')) {
+            try {
+                await api.delete(`/urls/${id}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                getShortenedUrls();
+            } catch (err) {
+                alert(err);
+            }
+        }
+    };
+
+    const copyShortUrl = async (shortUrl) => {
+        navigator.clipboard.writeText(
+            (process.env.NODE_ENV === 'development'
+                ? process.env.REACT_APP_API_URL_DEV
+                : process.env.REACT_APP_API_URL_PROD) +
+                '/urls/open/' +
+                shortUrl
+        );
+        alert('URL copiada com sucesso!');
+    };
+
     useEffect(() => {
         getShortenedUrls();
     }, []);
@@ -65,6 +91,8 @@ const Home = () => {
                     <UrlContainer
                         key={shortenedUrl.id}
                         shortenedUrl={shortenedUrl}
+                        deleteShortenedUrl={deleteShortenedUrl}
+                        copyShortUrl={copyShortUrl}
                     />
                 ))
             ) : (
