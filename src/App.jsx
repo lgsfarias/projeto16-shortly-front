@@ -8,6 +8,7 @@ import Header from './components/Header';
 import Login from './components/pages/Login';
 import SignUp from './components/pages/SignUp';
 import Home from './components/pages/Home';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
     const [token, setToken] = usePersistedState('token', null);
@@ -18,7 +19,14 @@ function App() {
             <Header />
             <Routes>
                 <Route path="/" element={<Ranking />} />
-                <Route path="/home" element={<Home />} />
+                <Route
+                    path="/home"
+                    element={
+                        <ProtectedRoute>
+                            <Home />
+                        </ProtectedRoute>
+                    }
+                />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<SignUp />} />
                 <Route path="/ranking" element={<h1>tela de ranking</h1>} />
