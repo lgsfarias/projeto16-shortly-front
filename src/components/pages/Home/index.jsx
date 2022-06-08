@@ -34,6 +34,7 @@ const Home = () => {
                 }
             );
             getShortenedUrls();
+            setUrl('');
         } catch (err) {
             alert(err);
         }
@@ -56,11 +57,7 @@ const Home = () => {
 
     const copyShortUrl = async (shortUrl) => {
         navigator.clipboard.writeText(
-            (process.env.NODE_ENV === 'development'
-                ? process.env.REACT_APP_API_URL_DEV
-                : process.env.REACT_APP_API_URL_PROD) +
-                '/urls/open/' +
-                shortUrl
+            process.env.REACT_APP_API_URL + '/urls/open/' + shortUrl
         );
         alert('URL copiada com sucesso!');
     };
@@ -80,8 +77,8 @@ const Home = () => {
                 <S.Input
                     type="url"
                     placeholder="Links que cabem no bolso"
-                    value={url}
                     onChange={(e) => setUrl(e.target.value)}
+                    value={url}
                     required
                 />
                 <S.HomeButton type="submit">Encurtar link</S.HomeButton>
