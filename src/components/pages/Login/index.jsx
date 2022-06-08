@@ -28,7 +28,7 @@ const Login = () => {
         try {
             const { data } = await api.post('signin', body);
             setToken(data.token);
-            navigate('/');
+            navigate('/home');
         } catch (err) {
             setLoading(false);
             alert(err.response.data);
