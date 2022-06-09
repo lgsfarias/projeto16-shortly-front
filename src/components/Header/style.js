@@ -35,6 +35,7 @@ const Header = styled.header`
         justify-content: center;
         align-items: center;
         gap: 10px;
+        cursor: pointer;
 
         img {
             width: 100px;

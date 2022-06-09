@@ -21,7 +21,7 @@ const Header = () => {
     return token ? (
         <S.Header>
             <span>Seja bem-vindo(a), {user?.name}!</span>
-            <div className="logo">
+            <div className="logo" onClick={() => navigate('/')}>
                 <h1>Shortly</h1>
                 <img src={shorts} alt="Shortly" />
             </div>
@@ -63,7 +63,7 @@ const Header = () => {
     ) : (
         <S.Header>
             <span></span>
-            <div className="logo">
+            <div className="logo" onClick={() => navigate('/')}>
                 <h1>Shortly</h1>
                 <img src={shorts} alt="Shortly" />
             </div>
