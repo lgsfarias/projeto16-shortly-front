@@ -31,7 +31,7 @@ const SignUp = () => {
             navigate('/login');
         } catch (err) {
             setLoading(false);
-            alert(err.response.data);
+            alert(err.response.data.message);
         }
     };
 

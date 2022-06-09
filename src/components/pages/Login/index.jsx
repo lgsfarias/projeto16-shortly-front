@@ -43,7 +43,7 @@ const Login = () => {
             navigate('/home');
         } catch (err) {
             setLoading(false);
-            alert(err.response.data);
+            alert(err.response.data.message);
         }
     };
 
