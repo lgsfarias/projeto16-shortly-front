@@ -1,12 +1,17 @@
 import styled from 'styled-components';
 
 export const RankingWrapper = styled.main`
+    position: fixed;
+    top: 270px;
+    left: 0;
+    right: 0;
+    bottom: 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
-    margin-top: 270px;
     padding: 0 90px;
+    overflow-y: auto;
 
     .logo {
         display: flex;
@@ -40,7 +45,6 @@ export const Ranking = styled.div`
     gap: 13px;
 
     width: 100%;
-    height: 100%;
     padding: 20px 40px;
     border: 1px solid rgba(120, 177, 89, 0.25);
     box-shadow: 0px 4px 24px rgba(120, 177, 89, 0.12);
