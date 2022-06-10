@@ -11,6 +11,7 @@ const Header = styled.header`
     left: 0;
     width: 100%;
     height: 120px;
+    font-family: 'Lexend Deca', sans-serif;
 
     nav > ul {
         display: flex;
