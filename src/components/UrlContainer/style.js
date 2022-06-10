@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const UrlContainer = styled.div`
+    font-family: 'Lexend Deca', sans-serif;
     display: flex;
     justify-content: space-between;
     align-items: center;
