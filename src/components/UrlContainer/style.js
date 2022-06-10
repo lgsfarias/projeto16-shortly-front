@@ -6,7 +6,7 @@ export const UrlContainer = styled.div`
     align-items: center;
     width: 100%;
     padding: 0 24px;
-    height: 60px;
+    min-height: 60px;
 `;
 
 export const Infos = styled.div`

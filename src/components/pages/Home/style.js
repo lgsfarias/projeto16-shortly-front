@@ -4,16 +4,18 @@ import Button from '../../../styles/elements/Button/Button';
 import Form from '../../../styles/elements/Form/Form';
 
 export const HomeWrapper = styled.div`
+    position: fixed;
+    top: 270px;
+    left: 0;
+    right: 0;
+    bottom: 0;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    position: relative;
     gap: 40px;
-    margin-top: 300px;
     padding: 0 90px;
-    width: 100%;
-    height: 100%;
+    overflow-y: auto;
 `;
 
 export const HomeForm = styled(Form)`
